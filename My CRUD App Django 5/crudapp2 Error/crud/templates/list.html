@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-sm-8 offset-1 d-inline">
+    <h4 class="text-center alert alert-info ">Show Student Details</h4>
+
+    {% if student %}
+
+        <h4>Table data</h4><br>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Student ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stud in student %}
+                <tr>
+                    <td scope="col">{{forloop.counter}}</td>
+                    <td scope="col">{{stud.name}}</td>
+                    <td scope="col">{{stud.email}}</td>
+                    <td scope="col">{{stud.contact}}</td>
+
+                    <td>
+                        <a href="{% url 'updatedata' stud.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{% url 'deletedata' stud.id %}" method="POST" class="d-inline">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+           
+        </table>
+
+    {% else %}
+
+        <h4 class="text-center alert alert-warning">No record found</h4>
+
+
+    {% endif %}
+
+     <a href="{% url 'createdata' %}" class="btn btn-info">Back to Home</a>
+</div>
+
+{% endblock content %}

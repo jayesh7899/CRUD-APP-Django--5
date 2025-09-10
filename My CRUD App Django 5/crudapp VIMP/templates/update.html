@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJANGO CRUD APP UPDATE</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-md">
+            <a href="/" class="navbar-brand">DJANGO CRUD APP</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+
+        <div class="col-md-6 offset-3">
+            <h2 class="text-white bg-info text-center p-2">Update Student Details</h2><br>
+
+            <form action="/update/{{d.id}}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-gropup">
+                    <input type="text" value={{d.name}} class="form-control" placeholder="Enter the Student Name " name="name" required>
+                </div>
+
+                <div class="form-gropup mt-2">
+                    <input type="email" value="{{d.email}}" class="form-control" placeholder="Enter the Student Email " name="email" required>
+                </div>
+
+                <div class="form-gropup mt-2">
+                    <input type="number" value={{d.age}} class="form-control" placeholder="Enter the Student Age " name="age" required>
+                </div>
+
+                <div class="form-group mt-2">
+                    <select name="gender" id="gender" class="form-control" required>
+                        <option selected>{{d.gender}}</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+
+                    </select>
+                </div><br>
+
+                <div class="d-grid gap-1">
+                    <button class="btn btn-success" type="submit">Update</button>
+                </div>
+            </form>
+
+
+        </div><br><br>
+
+    </div>
+
+        <div class="row">
+
+            <div class="col-sm-10">
+              
+
+            </div>
+            <div class="col-sm-2">
+                <a href="/" class="btn btn-primary mt-4">Back to home..</a>
+
+            </div>
+        </div>
+    
+
+    </div>
+
+
+  
+    
+    <script src="{% static 'bootstrap.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>

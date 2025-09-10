@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD APP</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        
+        <div class="container-md">
+            <a href="/" class="navbar-brand">DJANGO CRUD APP</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+
+            <div class="col-md-4">
+                <form action="adddata" method="POST" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                <h2 class="text-white bg-info text-center p-2">Insert Details</h2><br>
+
+                <div class="form-group p-2">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" name="name" required>
+
+                </div>
+
+                <div class="form-group p-2">
+                    <label for="">Age</label>
+                    <input type="number" class="form-control" name="age" required>
+                    
+                </div>
+
+                <div class="form-group p-2">
+                    <label for="">Address</label>
+                    <input type="text" class="form-control" name="address" required>
+                    
+                </div>
+
+                <div class="form-group p-2">
+                    <label for="">contact</label>
+                    <input type="number" class="form-control" name="contact" required>
+                    
+                </div>
+
+                <div class="form-group p-2">
+                    <label for="">Mail</label>
+                    <input type="email" class="form-control" name="mail" required>
+                    
+                </div>
+                <br>
+
+                <div class="form-group pull-right p-2">
+               
+                    <input type="submit" class="btn btn-primary" value="Submit" >
+                    <input type="reset" class="btn btn-danger" value="Clear" >
+                    
+                </div>
+                </form>
+
+            </div><br><br>
+
+            <div class="col-md-8">
+                
+                {% if data %}
+                <h2 class="text-white bg-info text-center p-2">Show Details</h2><br>
+                
+                <table class="table table-bordered">
+                    
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Address</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                            
+                        </tr>
+                    </thead>
+
+            
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{d.name}}</td>
+                            <td>{{d.age}}</td>
+                            <td>{{d.address}}</td>
+                            <td>{{d.contact}}</td>
+                            <td>{{d.mail}}</td>
+                            <td>
+                                <a href="updatedata/{{d.id}}" class="btn btn-success">Edit</a>
+                                <a href="deletedata/{{d.id}}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                    
+            
+                </table>
+
+                {% else %}
+                <div >
+                    <br><br><br><br>
+                    <marquee behavior="bordered" direction="right"><h2 class="text-warning bg-dark text-center p-2">No Data Found here...</h2></marquee>
+
+                </div>
+
+                
+                {% endif %}
+
+            </div>
+            
+
+        </div>
+
+    </div>
+
+  
+    
+    <script src="{% static 'bootstrap.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
